@@ -1,0 +1,1 @@
+variable "project_name"{} variable "environment"{} variable "private_subnet_ids"{type=list(string)} resource "aws_db_subnet_group" "this" {name="${var.project_name}-${var.environment}" subnet_ids=var.private_subnet_ids} output "endpoint"{value="pending-rds-module"}

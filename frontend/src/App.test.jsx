@@ -1,0 +1,1 @@
+import {describe,it,expect} from 'vitest';describe('EstatePro',()=>{it('has a test suite configured',()=>expect(true).toBe(true))});

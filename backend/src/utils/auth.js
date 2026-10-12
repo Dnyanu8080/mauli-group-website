@@ -1,0 +1,4 @@
+import jwt from 'jsonwebtoken';
+export function signToken(user){return jwt.sign({id:user.id,role:user.role,email:user.email},process.env.JWT_SECRET||'change-me-in-production',{expiresIn:'1h'});}
+export function requireAuth(req,res,next){try{const h=req.headers.authorization||'';const token=h.startsWith('Bearer ')?h.slice(7):null;if(!token) return res.status(401).json({message:'Authentication required'});req.user=jwt.verify(token,process.env.JWT_SECRET||'change-me-in-production');next()}catch{return res.status(401).json({message:'Invalid or expired token'})}}
+export const allowRoles=(...roles)=>(req,res,next)=>roles.includes(req.user.role)?next():res.status(403).json({message:'Forbidden'});

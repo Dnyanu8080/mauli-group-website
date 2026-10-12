@@ -1,0 +1,1 @@
+import {test,expect} from '@playwright/test';test('homepage loads',async({page})=>{await page.goto(process.env.BASE_URL||'http://localhost:5173');await expect(page).toHaveTitle(/EstatePro/);await expect(page.getByText('Find a place that feels')).toBeVisible()});
